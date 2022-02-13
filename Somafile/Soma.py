@@ -46,7 +46,7 @@ def read_out_json(filename, fileout):
     
     """
     df = pd.read_csv(filename)
-    df.to_json(fileout, orient='index')
+    df.to_json(fileout)
 
 # 2.5 .Read json file and Write csv file(Comma delimited)
 def readjson_out_csv(filename, fileout):
@@ -198,12 +198,12 @@ def count_categories(my_dicts,grouping_column):
     returns a data frame of various gender categories and counts in each category
 
     """
-    x=[i for i in grouping_column]
+    x=[i[grouping_column] for i in my_dicts]
     j=np.unique(x)
     mydict={}
     for obj in j:
         count=0
-        for k in grouping_column:
+        for k in x:
             if k== obj:
                 count+=1
         mydict[obj]=count
